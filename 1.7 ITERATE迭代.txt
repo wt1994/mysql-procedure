@@ -1,0 +1,19 @@
+CREATE PROCEDURE test13()
+BEGIN
+	DECLARE v INT;
+	SET v = 0;
+		loop_label: LOOP
+					IF v = 3 THEN
+							SET v = v + 1;
+							ITERATE loop_label;
+					ELSE 
+               SET v = v + 3;
+					END IF;
+						
+						 SET v = v + 1;
+					IF v >= 5 THEN
+						LEAVE loop_label;
+					END IF;
+		END LOOP;
+SELECT v;
+END
