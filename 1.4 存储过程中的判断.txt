@@ -1,0 +1,19 @@
+CREATE PROCEDURE test8(IN `param1` int)
+BEGIN
+  DECLARE params2 int;
+
+  SET params2=param1+1;
+
+  IF param1=0 THEN
+    select id from sys_banner;
+  END IF;
+  
+  IF   params2=0  THEN
+     select url from sys_banner; 
+	ELSE 
+     select image from sys_banner;
+
+  END IF;
+
+END;
+

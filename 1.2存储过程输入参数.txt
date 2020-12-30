@@ -1,0 +1,1 @@
+CREATE PROCEDURE test2(param1 INT) select  * from sys_banner where id=param1//

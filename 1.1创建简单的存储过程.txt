@@ -1,0 +1,3 @@
+DELIMITER //
+CREATE PROCEDURE test1() SELECT * FROM sys_banner;//
+CALL test1()//

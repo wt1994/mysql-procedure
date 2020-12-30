@@ -1,0 +1,4 @@
+CREATE PROCEDURE testOut(OUT param INT)
+SET param =-10 //
+CALL test(@x) //
+SELECT @x //
