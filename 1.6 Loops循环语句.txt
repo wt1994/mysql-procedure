@@ -1,0 +1,55 @@
+一.循环的几种方式：
+WHILE ... END WHILE
+LOOP ... END LOOP
+REPEAT ... END REPEAT
+GOTO
+
+LEAVE 标号 跳出当前循环
+
+
+二:详细过程
+1.WHILE...DO .... END WHILE 
+CREATE  PROCEDURE test2()
+BEGIN
+
+DECLARE NUM INT;
+DECLARE NUM2 INT;
+SET NUM=0;
+WHILE NUM <10 DO
+		SET NUM=NUM+1;	
+		SET NUM2=NUM;	
+END WHILE;
+SELECT NUM2;
+END;
+
+2. LOOP  ....loop_label:LOOP    ....... LEAVE loop_label;  .......END LOOP;
+
+CREATE PROCEDURE test11()
+BEGIN
+	
+DECLARE params1 int;
+DECLARE params2 int;
+SET params1 =10;
+SET params2 =0;
+loop_lable:LOOP
+    SET params1=params1+1;
+		SET params2=params1;
+		IF params1>20 THEN
+     LEAVE loop_lable;
+		END IF;
+END LOOP;
+SELECT params2;
+END;
+
+3. REPEAT ...... UNTIL.... END REPEAT;    注意UNTIL语句后面不用分号结束
+    DECLARE params1 INT;
+    SET params1=0;
+    REPEAT
+          SET params1=params1+1;
+     UNTIL params1>10 
+   END REPEAT;
+
+
+ 
+
+
