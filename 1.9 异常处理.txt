@@ -4,8 +4,7 @@
 		 HANDLER FOR
 		 {ERROR_CODE|{SQLSTATE ERROR-STREING}|CONDITION}
         SQLSTATEMENT
-1.例如在insert的时候异常，希望将错误写到里面日志, 错误码1054 列不存在.
-EXIT 表示的是在执行成功后退出当前的这个复合语句
+1.DECLARE EXIT
 
 BEGIN
 	
@@ -15,13 +14,23 @@ BEGIN
 	 INSERT INTO sys_banner (image,url2,sort,add_date,banner_status) VALUES ('1','1',5,CURDATE(),5);
 END
 
-2.CONTINUE  列子如下 异常后继续执行下面的代码
+2.DECLARE CONTINUE  列子如下 异常后继续执行下面的代码
  	DECLARE prams1 INT;
 	DECLARE CONTINUE HANDLER FOR 1054 SET params1=100;
 	SET params1=200;
                   SELECT  id FROM sys_banner;
 	SET params1=100;
 	SELECT url FROM sys_banner;
+3.DECLARE CONDITION 声明条件
+	DECLARE 'Constraint Violation' CONDITION  FOR SQLSTATE '23000';
+	DECLARE EXIT HANDLER FOR 'Constraint Violation' ROLLBACK;
+	START TRANSACTION;
+	INSERT INTO sys_banner (image,url,sort,add_date,banner_status) VALUES('1','1',5,CURDATE(),100); 
+                 COMMIT;
+	
+
+	
+   
 
 	
    
